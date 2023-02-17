@@ -1,0 +1,5 @@
+.currencies__container {
+    display: flex;
+    font-size: 0.7rem;
+    flex-wrap: wrap;
+}
