@@ -1,4 +1,4 @@
-.mainpage-container {
+.mainpageContainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,10 +6,10 @@
     width: 100%;
     height: 100%;
 }
-.button-container {
+.buttonContainer {
     width: 350px;
 }
-.button__set-modal-open-close {
+.button__setModalOpenClose {
     width: 100%;
     height: 100%;
     padding: 1rem 1rem;

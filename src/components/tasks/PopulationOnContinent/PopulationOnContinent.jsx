@@ -9,10 +9,9 @@ const PopulationOnContinent = ({ data }) => {
   let populationOfContinents = {};
 
   function sumPopulation(continent) {
-    let allPopulationOfEachCountry = [];
     const choosenContinent = groupByContinents[continent];
-    choosenContinent.map((country) => {
-      allPopulationOfEachCountry.push(country.population);
+    const allPopulationOfEachCountry=choosenContinent.map((country) => {
+      return country.population;
     });
     let allPopulationOfContinent = allPopulationOfEachCountry.reduce(
       (a, b) => a + b,
@@ -31,7 +30,6 @@ const PopulationOnContinent = ({ data }) => {
       {arrayOfContinents.map((continent, index) => {
         return <p key={index}>{sumPopulation(continent)}</p>;
       })}
-      {/* Kontynent z największą i najmniejszą populacją */}
       <p style={{ fontWeight: 700, color: green[200] }}>
         Continent with the largest population:{" "}
         {getKeysWithHighestAndLowestValue(populationOfContinents, 0, 1)}

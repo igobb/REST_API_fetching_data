@@ -1,33 +1,16 @@
 import React from "react";
 import { groupBy } from "../../../functions/groupByFunction/groupBy";
+import { getKeysWithHighestAndLowestValue } from "../../../functions/highestAndLowestFunction/highestAndLowestFunction";
 
 const TheMostAndTheLowestCountries = ({ data }) => {
   const groupByContinents = groupBy(data, "continents");
-
   const Continents = {};
 
-  Object.keys(groupByContinents).map((continent) => {
-    return (Continents[continent] = Object.keys(
+  Object.keys(groupByContinents).forEach((continent) => {
+    Continents[continent] = Object.keys(
       groupByContinents[continent]
-    ).length);
+    ).length;
   });
-
-  //Jak przypisać do nazwy kontynentu wartość z liczbą państw
-  function getKeysWithHighestAndLowestValue(o, slice1, slice2) {
-    let keys = Object.keys(o);
-    keys.sort(function (a, b) {
-      return o[b] - o[a];
-    });
-    return keys.slice(slice1, slice2);
-  }
-
-  // function getKeysWithLowestValue(o){
-  //   let keys = Object.keys(o);
-  //   keys.sort(function(a,b){
-  //     return o[b] - o[a];
-  //   })
-  //   return keys.slice(-1);
-  // }
 
   return (
     <div>

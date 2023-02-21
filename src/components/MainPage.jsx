@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import Modal from "../components/modal/Modal";
 
-import './MainPage.css';
+import style from './MainPage.module.css';
 
 import CountriesWithEuro from "./tasks/CountriesWithEuro/CountriesWithEuro";
 import CountriesWithoutCapital from "./tasks/CountriesWithoutCapital/CountriesWithoutCapital";
@@ -34,21 +34,22 @@ const MainPage = () => {
     setIsOpenedSortCurrenciesAlfabetically,
   ] = useState(false);
 
+  const fetchData = useCallback(async() => {
+    const result = await fetch(URL);
+    result.json().then((data) => {
+      setData(data);
+    });
+  },[URL]);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch(URL);
-      result.json().then((data) => {
-        setData(data);
-      });
-    };
     fetchData();
   }, []);
 
   return (
-    <div className="mainpage-container">
+    <div className={style.mainpageContainer}>
       <Header/>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedCountriesWithEuro(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedCountriesWithEuro(true)} className={style.button__setModalOpenClose}>
           Countries with Euro currency
         </button>
         <Modal
@@ -58,8 +59,8 @@ const MainPage = () => {
           <CountriesWithEuro data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedCountriesWithoutCapital(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedCountriesWithoutCapital(true)} className={style.button__setModalOpenClose}>
           Countries without capital
         </button>
         <Modal
@@ -69,8 +70,8 @@ const MainPage = () => {
           <CountriesWithoutCapital data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedCountriesGrouped(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedCountriesGrouped(true)} className={style.button__setModalOpenClose}>
           Countries grouped by continents
         </button>
         <Modal
@@ -80,8 +81,8 @@ const MainPage = () => {
           <CountriesGroupedByContinent data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedTheMostAndTheLowestCountries(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedTheMostAndTheLowestCountries(true)} className={style.button__setModalOpenClose}>
           Which continent has the most and which has the fewest countries?
         </button>
         <Modal
@@ -91,8 +92,8 @@ const MainPage = () => {
           <TheMostAndTheLowestCountries data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedPopulationOnContinent(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedPopulationOnContinent(true)} className={style.button__setModalOpenClose}>
           Continents population
         </button>
         <Modal
@@ -102,8 +103,8 @@ const MainPage = () => {
           <PopulationOnContinent data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedAreaOnContinent(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedAreaOnContinent(true)} className={style.button__setModalOpenClose}>
           Continents area
         </button>
         <Modal
@@ -113,8 +114,8 @@ const MainPage = () => {
           <AreaOfContinent data={data} />
         </Modal>
       </div>
-      <div className="button-container">
-        <button onClick={() => setIsOpenedSortCurrenciesAlfabetically(true)} className="button__set-modal-open-close">
+      <div className={style.buttonContainer}>
+        <button onClick={() => setIsOpenedSortCurrenciesAlfabetically(true)} className={style.button__setModalOpenClose}>
           Currencies sorted alfabetically
         </button>
         <Modal

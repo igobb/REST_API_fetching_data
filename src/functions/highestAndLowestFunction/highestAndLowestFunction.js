@@ -1,7 +1,8 @@
-export const getKeysWithHighestAndLowestValue = (o, slice1, slice2) => {
-    let keys = Object.keys(o);
-    keys.sort(function (a, b) {
-      return o[b] - o[a];
+export function getKeysWithHighestAndLowestValue(o, slice1, slice2) {
+    let continentWithCountriesCounts = Object.entries(o);
+    continentWithCountriesCounts.sort(function (a, b) {
+      return b[1] - a[1];
     });
-    return keys.slice(slice1, slice2);
+
+    return continentWithCountriesCounts.slice(slice1, slice2);
   }

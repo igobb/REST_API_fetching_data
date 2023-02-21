@@ -1,13 +1,18 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import "./CountriesWithEuro.css";
 
 const CountriesWithEuro = ({ data }) => {
-  let countriesWithEuro = [];
+  const [countriesWithEuro,setCountriesWithEuro] = useState([]);
 
-  data &&
-    data.map((country) => {
-      country.currencies?.EUR && countriesWithEuro.push(country);
+  useEffect(()=>{
+    const euroCountries=data.filter((country) => {
+      if(country.currencies){
+        return Object.keys(country.currencies).includes("EUR");
+      }
     });
+    setCountriesWithEuro(euroCountries)
+  },[])
+    
 
   return (
     <div>
